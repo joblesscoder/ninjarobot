@@ -12,21 +12,21 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
-	useEffect(() => {
-		bridge.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-		});
-		async function fetchData() {
-			const user = await bridge.send('VKWebAppGetUserInfo');
-			setUser(user);
-			setPopout(null);
-		}
-		fetchData();
-	}, []);
+	// useEffect(() => {
+	// 	bridge.subscribe(({ detail: { type, data }}) => {
+	// 		if (type === 'VKWebAppUpdateConfig') {
+	// 			const schemeAttribute = document.createAttribute('scheme');
+	// 			schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
+	// 			document.body.attributes.setNamedItem(schemeAttribute);
+	// 		}
+	// 	});
+	// 	async function fetchData() {
+	// 		const user = await bridge.send('VKWebAppGetUserInfo');
+	// 		setUser(user);
+	// 		setPopout(null);
+	// 	}
+	// 	fetchData();
+	// }, []);
 
 	const go = e => {
 		setActivePanel(e.currentTarget.dataset.to);
